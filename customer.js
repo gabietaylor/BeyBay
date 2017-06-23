@@ -14,6 +14,22 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
 	if (err) throw err;
 	console.log("MySQL server connected with the ID" + connection.threadId)
-	//userLogin()
+	userLogin()
 });
 
+function userLogin() {
+	inquirer.prompt([
+		{
+			type: "confirm",
+			message: "Would you like to buy Beyonce merch?",
+			name: "confirm",
+			default: true
+		}
+	]).then(function (userInput) {
+		if (userInput.confirm) {
+			//selectMerch();
+		} else {
+			console.log("Leaving the BeyHive")
+		}
+	});
+}
