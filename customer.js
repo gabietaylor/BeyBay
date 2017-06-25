@@ -40,13 +40,13 @@ function selectMerch() {
             message: "Choose what you would like to slay in:",
             name: "choice",
             choices: function() {
-                var choiceArray = [];
-                for (var i = 0; i < results.length; i++) {
-                    choiceArray.push(results[i].product_name + " " + results[i].price + "$");
+                    var choiceArray = [];
+                    for (var i = 0; i < results.length; i++) {
+                        choiceArray.push(results[i].product_name + " " + results[i].price + "$");
+                    }
+                    return choiceArray;
                 }
-                return choiceArray;
-            }
-            // keep pushing not in stock even when in stock
+                // keep pushing not in stock even when in stock
         }, {
             type: "input",
             message: "How many would you like?",

@@ -2,6 +2,9 @@ var mysql = require("mysql");
 //console.log(mysql);
 var inquirer = require("inquirer");
 //console.log(inquirer); 
+var customer = require('./customer.js');
+var manager = require('./manager.js');
+var supervisor = require('./supervisor.js');
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -21,7 +24,7 @@ function mainMenu() {
     inquirer.prompt([{
         name: "list",
         type: "rawlist",
-        message: "Welcome to BeyBay: the One Stop Shop for all you slaying needs!! Are you a:",
+        message: "Welcome to BeyBay: the One Stop Shop for All Your Slaying Needs!! Are you a:",
         choices: ["Customer", "Manager", "Supervisor"]
     }]).then(function(input) {
         switch (input.list) {
@@ -38,14 +41,16 @@ function mainMenu() {
     });
 }
 
-/*function customer() {
+function customer() {
+	console.log("Welcome Customer");
 
 }
 
 function manager() {
+	console.log("Welcome Manager");
 
 }
 
 function supervisor() {
-
-}*/
+	console.log("Welcome Supervisor");
+}
