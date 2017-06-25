@@ -22,7 +22,7 @@ function mainCustomer() {
     function userLogin() {
         inquirer.prompt([{
             type: "confirm",
-            message: "Would you like to buy Beyonce merch?",
+            message: "Welcome Queens! Would you like to buy Beyonce merch?",
             name: "confirm",
             default: true
         }]).then(function(userInputs) {

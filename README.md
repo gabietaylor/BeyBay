@@ -5,6 +5,7 @@
 In this activity, I'll be creating a storefront for Beyonce themed merchandise with MySQL and node.js. The app will take in orders from customers and deplete stock from the store's inventory. The program can also track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store.
 
 The User interface allows the user to pick if they are a customer, manager or supervisor from there you will be able to view the following below.
+[![Alt text](assets/images/2017-06-25.png)]()
 
 ## Customer View
 
