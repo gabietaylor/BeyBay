@@ -13,21 +13,19 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
-    //console.log("MySQL server connected with the ID" + connection.threadId)
+    //console.log("Connected to mysql server with the ID " + connection.threadId)
     userLogin()
 });
 
 function userLogin() {
-    inquirer.prompt([
-	    {	
-	        type: "confirm",
-	        message: "Would you like to buy Beyonce merch?",
-	        name: "confirm",
-	        default: true
-	    }
-    ]).then(function(userInput) {
-        if (userInput.confirm) {
-            //selectProducts();
+    inquirer.prompt([{
+        type: "confirm",
+        message: "Would you like to buy Beyonce merch?",
+        name: "confirm",
+        default: true
+    }]).then(function(userInputs) {
+        if (userInputs.confirm) {
+            selectMerch();
         } else {
             console.log("Leaving the BeyHive")
         }
@@ -35,54 +33,48 @@ function userLogin() {
 }
 
 function selectMerch() {
-
-connection.query("SELECT * FROM `products`", function(err, results) {
-    if (err) throw err;
-    inquirer.prompt([{
+    connection.query("SELECT * FROM `products`", function(err, results) {
+        if (err) throw err;
+        inquirer.prompt([{
             type: "rawlist",
-            message: "Choose what you like to buy:",
+            message: "Choose what you would like to slay in:",
             name: "choice",
             choices: function() {
-
                 var choiceArray = [];
                 for (var i = 0; i < results.length; i++) {
-                    choicesArray.push(results[i].product_name + " " + results[i].price + "$");
+                    choiceArray.push(results[i].product_name + " " + results[i].price + "$");
                 }
-
                 return choiceArray;
             }
-
-        },
-
-        {
+        }, {
             type: "input",
             message: "How many would you like?",
             name: "quantity"
-        }
-
-    ]).then(function(answer) {
-        var userItem;
-        for (var i = 0; i < results.length; i++) {
-            if (results[i].product_name === answer.Choice) {
-                userItem = results[i];
-            }
-        }
-        if (results.stock_quantity < parseInt(answer.quantity)) {
-            connection.query("UPDATE products SET ? WHERE ?", [{
-                    stock_quantity: answer.quantity
-                }, {
-                    id: userItem.id
-                }],
-                function(error) {
-                    if (error) throw err;
-                    console.log('Yes! Now you can slay!');
-                    userLogin();
+        }]).then(function(userInput) {
+            var userItem;
+            for (var i = 0; i < results.length; i++) {
+                if (results[i].product_name === userInput.choice) {
+                    userItem = results[i];
                 }
-            );
-        } else {
-            console.log("Sorry come back later and we'll get you right...");
-            userLogin();
-        }
+            }
+            if (results.stock_quantity > parseInt(userInput.quantity)) {
+                connection.query("UPDATE products SET ? WHERE ?", [{
+                        stock_quantity: userInput.quantity
+                    }, {
+                        id: userItem.id
+                    }],
+
+                    function(error) {
+
+                        if (error) throw err;
+                        console.log("Yes! Now you can slay!");
+                        userLogin();
+                    }
+                );
+            } else {
+                console.log("Sorry we are out of stock but choose another item!");
+                userLogin();
+            }
+        });
     });
-});
 }
