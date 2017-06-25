@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
-    //console.log("Connected to mysql server with the ID " + connection.threadId)
+    //console.log("MySQL server connected with the ID" + connection.threadId)
     userLogin()
 });
 
@@ -57,15 +57,13 @@ function selectMerch() {
                     userItem = results[i];
                 }
             }
-            if (results.stock_quantity > parseInt(userInput.quantity)) {
+            if (results.stock_quantity < parseInt(userInput.quantity)) {
                 connection.query("UPDATE products SET ? WHERE ?", [{
                         stock_quantity: userInput.quantity
                     }, {
                         id: userItem.id
                     }],
-
                     function(error) {
-
                         if (error) throw err;
                         console.log("Yes! Now you can slay!");
                         userLogin();
