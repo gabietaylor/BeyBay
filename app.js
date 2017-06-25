@@ -2,9 +2,6 @@ var mysql = require("mysql");
 //console.log(mysql);
 var inquirer = require("inquirer");
 //console.log(inquirer); 
-var mainCustomer = require("./customer.js");
-var mainManager = require("./manager.js");
-var mainSupervisor = require("./supervisor.js");
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -42,15 +39,19 @@ function mainMenu() {
 }
 
 function customer() {
-	console.log("Welcome Customer");
-
+    console.log("Welcome Customer");
+    var customer = require("./customer.js");
+    // console.log(customer.mainCustomer);
 }
 
 function manager() {
-	console.log("Welcome Manager");
-
+    console.log("Welcome Manager");
+    var manager = require("./manager.js");
+    // console.log(manager.mainManager);
 }
 
 function supervisor() {
-	console.log("Welcome Supervisor");
+    console.log("Welcome Supervisor");
+    var supervisor = require("./supervisor.js");
+    // console.log(supervisor.mainSupervisor);
 }
