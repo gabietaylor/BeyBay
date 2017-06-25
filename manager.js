@@ -50,15 +50,15 @@ function saleProducts() {
         response.forEach(function(row) {
             console.log("id = ", "'", row.id, "'",
                 "Product Name = ", "'", row.product_name, "'",
-                "Price:", "'", row.price, "'",
-                "Quantity", "'", row.stock_quantity, "'")
+                "Price ", "'", row.price, "'",
+                "Quantity ", "'", row.stock_quantity, "'")
         });
     })
 }
 
 // View Low Inventory Complete
 function lowInventory() {
-    connection.query("SELECT `product_name`, `stock_quantity` FROM `products` WHERE `stock_quantity`< 200 ORDER BY `stock_quantity` DESC;", function(err, results) {
+    connection.query("SELECT `product_name`, `stock_quantity` FROM `products` WHERE `stock_quantity`< 20 ORDER BY `stock_quantity` DESC;", function(err, results) {
         if (err)
             throw err;
         console.log(results)
@@ -93,6 +93,7 @@ function addInventory() {
 // Add Products Complete
 function addProduct() {
     console.log("Follow each prompt to add a new product:");
+    // need to put a switch in if mgr says no
     inquirer.prompt([{
         type: "confirm",
         name: "question",

@@ -1,5 +1,4 @@
 /*PRODUCTS TABLE*/
-
 DROP DATABASE IF EXISTS `beybay`;
 CREATE DATABASE `beybay`;
 
@@ -46,8 +45,8 @@ VALUES (9, 9, "productNine", "departmentNine", 50.00, 10, TRUE);
 INSERT INTO PRODUCTS (id, item_id, product_name, department_name, price, stock_quantity, autographed)
 VALUES (10, 10, "productTen", "departmentTen", 50.00, 10, FALSE);
 
-/*SALES DEPT TABLE - */
 
+/*SALES DEPT TABLE - */
 CREATE TABLE `departments` (
   id INT NOT NULL AUTO_INCREMENT,
   `department_id` INT NULL,
