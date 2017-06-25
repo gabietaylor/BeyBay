@@ -48,21 +48,26 @@ function saleProducts() {
             throw queryError;
         response.forEach(function(row) {
             console.log("id = ", "'", row.id, "'",
-                		"Product Name = ", "'", row.product_name, "'",
-                		"Price:", "'", row.price, "'",
-                		"Quantity", "'", row.stock_quantity, "'")
+                "Product Name = ", "'", row.product_name, "'",
+                "Price:", "'", row.price, "'",
+                "Quantity", "'", row.stock_quantity, "'")
         });
     })
 }
 
-/*funtion lowInventory() {
+function lowInventory() {
+    connection.query("SELECT `product_name`, `stock_quantity` FROM `products` WHERE `stock_quantity`< 200 ORDER BY `stock_quantity` DESC;", function(err, results) {
+        if (err)
+            throw err;
+        console.log(results)
+    });
+}
+
+/*
+function addInventory() {
 	
 }
 
-funtion addInventory() {
-	
-}
-
-funtion addProduct() {
+function addProduct() {
 	
 }*/
