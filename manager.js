@@ -18,14 +18,14 @@ connection.connect(function(err) {
 });
 
 function menu() {
-	inquirer.prompt([{
-		name: "list",
-		type: "rawlist",
-		message: "Welcome Manager: Choose from the menu:",
-		choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
-	}]).then(function (input) {
-		switch(input.list) {
-			case "View Products for Sale":
+    inquirer.prompt([{
+        name: "list",
+        type: "rawlist",
+        message: "Welcome Manager: Choose from the menu:",
+        choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
+    }]).then(function(input) {
+        switch (input.list) {
+            case "View Products for Sale":
                 saleProducts();
                 break;
             case "View Low Inventory":
@@ -37,15 +37,25 @@ function menu() {
             case "Add New Product":
                 addProduct();
                 break;
-		}
-	});
+        }
+    });
 }
 
-funtion saleProducts() {
-
+function saleProducts() {
+    console.log("View Sale Products");
+    connection.query("SELECT * FROM `products`", function(queryError, response) {
+        if (queryError)
+            throw queryError;
+        response.forEach(function(row) {
+            console.log("id = ", "'", row.id, "'",
+                		"Product Name = ", "'", row.product_name, "'",
+                		"Price:", "'", row.price, "'",
+                		"Quantity", "'", row.stock_quantity, "'")
+        });
+    })
 }
 
-funtion lowInventory() {
+/*funtion lowInventory() {
 	
 }
 
@@ -55,4 +65,4 @@ funtion addInventory() {
 
 funtion addProduct() {
 	
-}
+}*/
