@@ -41,6 +41,7 @@ function menu() {
     });
 }
 
+// View Sale Products Complete
 function saleProducts() {
     console.log("View Sale Products");
     connection.query("SELECT * FROM `products`", function(queryError, response) {
@@ -55,6 +56,7 @@ function saleProducts() {
     })
 }
 
+// View Low Inventory Complete
 function lowInventory() {
     connection.query("SELECT `product_name`, `stock_quantity` FROM `products` WHERE `stock_quantity`< 200 ORDER BY `stock_quantity` DESC;", function(err, results) {
         if (err)
@@ -63,11 +65,54 @@ function lowInventory() {
     });
 }
 
-/*
-function addInventory() {
-	
-}
+// Add to Products Inventory
+// function addInventory() {
+// }
 
+// Add Products Complete
 function addProduct() {
-	
-}*/
+    console.log("Follow each prompt to add new products:");
+    inquirer.prompt([{
+        type: "confirm",
+        name: "question",
+        message: "Add a new product?"
+    }, {
+        type: "input",
+        name: "item_id",
+        message: "Items Id:"
+    }, {
+        type: "input",
+        name: "product_name",
+        message: "Product Name:"
+    }, {
+        type: "input",
+        name: "department_name",
+        message: "Department Name:"
+    }, {
+        type: "input",
+        name: "price",
+        message: "Price:"
+    }, {
+        type: "input",
+        name: "stock_quantity",
+        message: "Stock Quantity:"
+    }, {
+        type: "input",
+        name: "autographed",
+        message: "Is it autographed? (0/1)"
+    }]).then(function(product) {
+        var item_id = product.item_id;
+        var product_name = product.product_name;
+        var department_name = product.department_name;
+        var price = product.price;
+        var stock_quantity = product.stock_quantity;
+        var autographed = product.autographed;
+
+        connection.query("INSERT INTO `products` (`item_id`, `product_name`, `department_name`, `price`, `stock_quantity`, `autographed`) VALUES (?, ?, ?, ?, ?, ?)", [item_id, product_name, department_name, price, stock_quantity, autographed], function(err, data) {
+            if (err) {
+                throw err
+            }
+            console.log("Your product " + product_name + " has been added!")
+        });
+    });
+}
