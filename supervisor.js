@@ -37,9 +37,23 @@ function menu() {
 
 // Sales Dept
 function salesDept() {
+    console.log("View Product Sales by Department");
+    // not pulling up table
+    connection.query("SELECT * FROM `departments`", function(queryError, response) {
+        if (queryError)
+            throw queryError;
+        response.forEach(function(row) {
+            console.log("id = ", "'", row.id, "'",
+                "Department Id = ", "'", row.department_id, "'",
+                "Department Name = ", "'", row.department_name, "'",
+                "Overhead Costs", "'", row.over_head_costs, "'",
+                "Product Sales", "'", row.product_sales, "'",
+                "Total Profit", "'", row.total_profits, "'")
+        });
+    })
 }
 
-// New Dept
+// New Dept Complete
 function addDept() {
     console.log("Follow each prompt to add a new department:");
     // need to put a switch in if supe says no

@@ -85,7 +85,7 @@ function addInventory() {
         }]).then(function(answer) {
             results.stock_quantity++;
             // results coming up undefined
-                console.log("you added another " + results.product_name);
+            console.log("you added another " + results.product_name);
         })
     });
 }
