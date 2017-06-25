@@ -2,9 +2,9 @@ var mysql = require("mysql");
 //console.log(mysql);
 var inquirer = require("inquirer");
 //console.log(inquirer); 
-var customer = require('./customer.js');
-var manager = require('./manager.js');
-var supervisor = require('./supervisor.js');
+var mainCustomer = require("./customer.js");
+var mainManager = require("./manager.js");
+var mainSupervisor = require("./supervisor.js");
 
 var connection = mysql.createConnection({
     host: 'localhost',
