@@ -72,7 +72,7 @@ function addInventory() {
         if (err)
             throw err;
         inquirer.prompt([{
-            type: 'rawlist',
+            type: 'list',
             name: "addProduct",
             message: "Add more of any product that is currently in the store",
             choices: function() {

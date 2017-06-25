@@ -36,7 +36,7 @@ function selectMerch() {
     connection.query("SELECT * FROM `products`", function(err, results) {
         if (err) throw err;
         inquirer.prompt([{
-            type: "rawlist",
+            type: "list",
             message: "Choose what you would like to slay in:",
             name: "choice",
             choices: function() {
