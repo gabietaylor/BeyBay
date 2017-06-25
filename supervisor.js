@@ -34,9 +34,7 @@ function menu() {
             default:
                 console.log("Please choose what you want to do!")
         }
-
     });
-
 }
 
 // Sales Dept
