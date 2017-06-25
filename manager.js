@@ -66,12 +66,33 @@ function lowInventory() {
 }
 
 // Add to Products Inventory
-// function addInventory() {
-// }
+function addInventory() {
+    console.log("Add to Current Products Inventory");
+    connection.query("SELECT * FROM `products`", function(err, results) {
+        if (err)
+            throw err;
+        inquirer.prompt([{
+            type: 'rawlist',
+            name: "addProduct",
+            message: "Add more of any product that is currently in the store",
+            choices: function() {
+                var choiceArray = [];
+                for (var i = 0; i < results.length; i++) {
+                    choiceArray.push(results[i].product_name + " " + "$ " + results[i].price);
+                }
+                return choiceArray;
+            }
+        }]).then(function(answer) {
+            results.stock_quantity++;
+            // results coming up undefined
+                console.log("you added another " + results.product_name);
+        })
+    });
+}
 
 // Add Products Complete
 function addProduct() {
-    console.log("Follow each prompt to add new products:");
+    console.log("Follow each prompt to add a new product:");
     inquirer.prompt([{
         type: "confirm",
         name: "question",

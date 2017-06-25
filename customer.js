@@ -46,6 +46,7 @@ function selectMerch() {
                 }
                 return choiceArray;
             }
+            // keep pushing not in stock even when in stock
         }, {
             type: "input",
             message: "How many would you like?",
