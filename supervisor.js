@@ -38,6 +38,7 @@ function mainSupervisor() {
     }
 
     // Sales Dept
+    // second table not popping up
     function salesDept() {
         console.log("View Product Sales by Department");
         // not pulling up table
