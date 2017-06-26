@@ -48,7 +48,6 @@ function mainCustomer() {
                         }
                         return choiceArray;
                     }
-                    // keep pushing not in stock even when in stock
             }, {
                 type: "input",
                 message: "How many would you like?",
@@ -59,6 +58,7 @@ function mainCustomer() {
                     if (results[i].product_name === userInput.choice) {
                         userItem = results[i];
                     }
+                    // keep pushing not in stock even when in stock
                 }
                 if (results.stock_quantity < parseInt(userInput.quantity)) {
                     connection.query("UPDATE products SET ? WHERE ?", [{

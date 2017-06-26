@@ -15,9 +15,10 @@ As a customer, the user will be able to make orders and will be provided with in
 ## Manager View
 
 As a manager, the user will be able to view sale products, add inventory, view low inventory, and add products to a list of already predisposed items.
-[![Alt text](assets/images/)]()
+[![Alt text](assets/images/2017-06-252.png)]()
+[![Alt text](assets/images/2017-06-254.png)]()
 
 ## Supervisor View
 
 As a supervisor, you will be able to view total profits generated from product sales and add new departments to the store as it grows.
-[![Alt text](assets/images/)]()
+[![Alt text](assets/images/2017-06-253.png)]()
