@@ -137,7 +137,7 @@ function mainManager() {
             var stock_quantity = product.stock_quantity;
             var autographed = product.autographed;
 
-            connection.query("INSERT INTO `products` (`id`, `item_id`, `product_name`, `department_name`, `price`, `stock_quantity`, `autographed`) VALUES (?, ?, ?, ?, ?, ?)", [item_id, product_name, department_name, price, stock_quantity, autographed], function(err, data) {
+            connection.query("INSERT INTO `products` (`id`, `item_id`, `product_name`, `department_name`, `price`, `stock_quantity`, `autographed`) VALUES (?, ?, ?, ?, ?, ?)", [id, item_id, product_name, department_name, price, stock_quantity, autographed], function(err, data) {
                 if (err) {
                     throw err
                 }
